@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { distributionStatsByCombination } from './model/distributionStatsByCombination';
 import { simulationStatsByCombination } from './model/simulationStatsByCombination';
 import { DiceServiceService } from '../shared/dice-service.service';

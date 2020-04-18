@@ -1,1 +1,36 @@
 <!-- Button Get All Simulations-->
+
+<table class="table table-striped table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Sides</th>
+      <th scope="col">Number of dice</th>
+      <th scope="col">Number of rolls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let simulation of diceSimulation; let i = index">
+      <th scope="row">
+        <a
+          [routerLink]="['/simulations', simulation.id]"
+          routerLinkActive="router-link-active"
+          >{{ simulation.id }}</a
+        >
+      </th>
+      <td>{{ simulation.sidesOfDie }}</td>
+      <td>{{ simulation.numberOfDice }}</td>
+      <td>{{ simulation.numberOfRolls }}</td>
+    </tr>
+  </tbody>
+
+  <!-- 
+  <ul class="table" *ngFor="let simulation of diceSimulation">
+    <li *ngFor="let dist of simulation.distribution">
+      <span>{{ simulation.id }} - </span>
+      <span>{{ dist.totalOfDiceValues }} - </span>
+      <span>{{ dist.frequency }}</span>
+    </li>
+  </ul>
+  -->
+</table>

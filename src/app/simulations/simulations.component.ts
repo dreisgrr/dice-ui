@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { diceSimulationModel } from './model/diceSimulationModel';
 import { DiceServiceService } from '../shared/dice-service.service';
 

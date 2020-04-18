@@ -16,6 +16,10 @@ const appRoutes: Routes = [
     component: SimulationsComponent,
   },
   {
+    path: 'simulations/:id',
+    component: HomeComponent,
+  },
+  {
     path: 'statistics',
     component: StatisticsComponent,
   },
