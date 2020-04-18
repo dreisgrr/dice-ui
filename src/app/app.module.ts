@@ -6,9 +6,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SimulationsComponent } from './simulations/simulations.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { HomeComponent } from './home/home.component';
-import { Router, Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SimulationDetailComponent } from './simulation-detail/simulation-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -17,7 +18,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'simulations/:id',
-    component: HomeComponent,
+    component: SimulationDetailComponent,
   },
   {
     path: 'statistics',
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     SimulationsComponent,
     StatisticsComponent,
     HomeComponent,
+    SimulationDetailComponent,
   ],
   imports: [
     BrowserModule,

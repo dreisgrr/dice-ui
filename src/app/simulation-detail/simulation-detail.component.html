@@ -1,0 +1,16 @@
+<p>Details</p>
+
+<ul class="table">
+  <span>Simulation #{{ diceSimulation.id }} </span
+  ><br />
+  <span>Rolled {{ diceSimulation.numberOfDice }} </span>
+  <span>{{ diceSimulation.sidesOfDie }}-sided dice </span
+  ><br />
+  <span>{{ diceSimulation.numberOfRolls }} times</span
+  ><br />
+
+  <li *ngFor="let dist of diceSimulation.distribution">
+    <span>Sum of dice: {{ dist.totalOfDiceValues }} - </span>
+    <span>Frequency: {{ dist.frequency }}</span>
+  </li>
+</ul>

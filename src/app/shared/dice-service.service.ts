@@ -35,6 +35,10 @@ export class DiceServiceService {
     return this.http.get<diceSimulationModel[]>(this.GET_ALL_SIMULATIONS_URL);
   }
 
+  getSimulationById(id: number): Observable<diceSimulationModel> {
+    return this.http.post<diceSimulationModel>(`${this.BASE_URL}\\${id}`, id);
+  }
+
   getSimulationStatsByCombination(
     diceConfiguration: diceConfiguration
   ): Observable<simulationStatsByCombination[]> {
