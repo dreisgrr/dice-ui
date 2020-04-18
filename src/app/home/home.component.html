@@ -4,8 +4,8 @@
     <div class="col-md-6">
       <form
         name="diceConfigForm"
-        (submit)="sendSimulation()"
         #f="ngForm"
+        (ngSubmit)="f.form.valid && sendSimulation()"
         novalidate
         class="feedback-form"
       >
@@ -13,13 +13,24 @@
         <div class="form-group">
           <label for="sides">Sides of die</label>
           <input
-            type="text"
+            type="number"
             id="sides"
             class="form-control"
             name="sides"
             placeholder="6"
             [(ngModel)]="model.sidesOfDie"
+            #sides="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && sides.invalid }"
+            min="4"
+            max="100"
+            required
           />
+          <!-- Input Validation group -->
+          <div *ngIf="f.submitted && sides.invalid" class="invalid-input">
+            <div *ngIf="sides.errors?.required">
+              Invalid input
+            </div>
+          </div>
         </div>
 
         <!-- Number of dice -->
@@ -32,7 +43,16 @@
             name="quantity"
             placeholder="3"
             [(ngModel)]="model.numberOfDice"
+            #quantity="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && quantity.invalid }"
+            required
           />
+          <!-- Input Validation group -->
+          <div *ngIf="f.submitted && quantity.invalid">
+            <div *ngIf="quantity.errors?.required" class="invalid-input">
+              Number of dice is required
+            </div>
+          </div>
         </div>
 
         <!-- Number of rolls -->
@@ -45,7 +65,15 @@
             name="rollCount"
             placeholder="10"
             [(ngModel)]="model.numberOfRolls"
+            #rollCount="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && rollCount.invalid }"
+            required
           />
+          <div *ngIf="f.submitted && rollCount.invalid">
+            <div *ngIf="rollCount.errors?.required" class="invalid-input">
+              Number of rolls is required
+            </div>
+          </div>
         </div>
 
         <!-- Button -->
