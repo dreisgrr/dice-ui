@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { diceSimulationModel } from './model/diceSimulationModel';
+import { DiceServiceService } from '../shared/dice-service.service';
 
 @Component({
   selector: 'app-simulations',
@@ -10,20 +11,19 @@ import { diceSimulationModel } from './model/diceSimulationModel';
 export class SimulationsComponent implements OnInit {
   diceSimulation: diceSimulationModel[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private diceService: DiceServiceService) {}
 
   ngOnInit() {
     this.getAllSimulations();
   }
 
   getAllSimulations(): void {
-    let url = 'http://localhost:8080/diceapi/simulation/all';
-    this.http.get<diceSimulationModel[]>(url).subscribe(
+    this.diceService.getAllSimulations().subscribe(
       (res) => {
         this.diceSimulation = res;
       },
       (err) => {
-        alert('err');
+        console.log(err.error.message);
       }
     );
   }

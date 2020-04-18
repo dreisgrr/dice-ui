@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { distributionStatsByCombination } from './model/distributionStatsByCombination';
 import { simulationStatsByCombination } from './model/simulationStatsByCombination';
+import { DiceServiceService } from '../shared/dice-service.service';
 
 @Component({
   selector: 'app-statistics',
@@ -14,35 +15,34 @@ export class StatisticsComponent implements OnInit {
     sidesOfDie: 0,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private diceService: DiceServiceService) {}
   simulationStatsByCombination: simulationStatsByCombination[] = [];
   distributionStatsByCombination: distributionStatsByCombination[] = [];
 
   ngOnInit() {}
 
   getSimulationStatsByCombination(): void {
-    let url = 'http://localhost:8080/diceapi/simulation/statistics/total';
-    this.http.post<simulationStatsByCombination[]>(url, this.model).subscribe(
+    this.diceService.getSimulationStatsByCombination(this.model).subscribe(
       (res) => {
         this.simulationStatsByCombination = res;
       },
       (err) => {
-        console.log(err);
+        console.log(err.error.message);
       }
     );
   }
 
   getCombinedDistributionStatsByCombination(): void {
-    let url =
-      'http://localhost:8080/diceapi/simulation/statistics/distribution';
-    this.http.post<distributionStatsByCombination[]>(url, this.model).subscribe(
-      (res) => {
-        this.distributionStatsByCombination = res;
-      },
-      (err) => {
-        alert('err');
-      }
-    );
+    this.diceService
+      .getCombinedDistributionStatsByCombination(this.model)
+      .subscribe(
+        (res) => {
+          this.distributionStatsByCombination = res;
+        },
+        (err) => {
+          console.log(err.error.message);
+        }
+      );
   }
 }
 export interface diceConfiguration {

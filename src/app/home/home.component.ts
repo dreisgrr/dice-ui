@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DiceServiceService } from '../shared/dice-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,31 +8,30 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  model: diceSimulation = {
+  model: diceSimulationInput = {
     numberOfDice: 0,
     sidesOfDie: 0,
     numberOfRolls: 0,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private diceService: DiceServiceService) {}
   simulationDistribution: simulationDistribution[] = [];
 
   ngOnInit() {}
 
-  sendSimulation(): void {
-    let url = 'http://localhost:8080/diceapi/simulation';
-    this.http.post<simulationDistribution[]>(url, this.model).subscribe(
+  runSimulation(): void {
+    this.diceService.runSimulation(this.model).subscribe(
       (res) => {
         this.simulationDistribution = res;
       },
       (err) => {
-        alert(err);
+        console.log(err.error.message);
       }
     );
   }
 }
 
-export interface diceSimulation {
+export interface diceSimulationInput {
   numberOfDice: number;
   sidesOfDie: number;
   numberOfRolls: number;
