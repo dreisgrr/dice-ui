@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.container {
+  margin-top: 3em;
+}
+.diceBot {
+  font-weight: bold;
+}
+
+.btn {
+  margin-right: 2em;
+}
+.table-small {
+  margin-top: 1em;
+}

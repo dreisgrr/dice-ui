@@ -49,50 +49,43 @@
           <span>Get Distribution</span>
         </button>
       </form>
-      <div
-        class="container"
-        *ngIf="simulationStatsByCombination != null; else empty"
-      >
-        Combination {{ model.numberOfDice }} pieces of
-        {{ model.sidesOfDie }}-sided dice has been rolled a total of
-        {{ simulationStatsByCombination.totalRolls }} times in
-        {{ simulationStatsByCombination.simulations }} simulations
-      </div>
-      <div
-        class="container"
-        *ngIf="distributionStatsByCombination != null; else empty"
-      >
-        <span>Rolled {{ distributionStatsByCombination.numberOfDice }} </span>
-        <span>{{ distributionStatsByCombination.sidesOfDie }}-sided dice </span
-        ><br />
-        <span>{{ distributionStatsByCombination.totalRolls }} times in</span
-        ><br />
-        <span>{{ distributionStatsByCombination.simulations }} simulations</span
-        ><br />
-        <span
-          >having {{ distributionStatsByCombination.numberOfSumResult }} sum
-          combinations</span
-        ><br />
-        <table class="table table-striped table-dark table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Sum of Dice</th>
-              <th scope="col">Frequency</th>
-              <th scope="col">Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="let dist of distributionStatsByCombination.distribution"
-            >
-              <td>{{ dist.totalOfDiceValues }}</td>
-              <td>{{ dist.frequency }}</td>
-              <td>{{ dist.percentage }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <ng-template #empty> </ng-template>
     </div>
   </div>
 </div>
+<div class="container" *ngIf="simulationStatsByCombination != null; else empty">
+  <span class="diceBot">DiceBot: </span> {{ model.numberOfDice }}
+  {{ model.sidesOfDie }}-sided dice has been rolled a total of
+  {{ simulationStatsByCombination.totalRolls }} times in
+  {{ simulationStatsByCombination.simulations }} simulations
+</div>
+<div
+  class="container"
+  *ngIf="distributionStatsByCombination != null; else empty"
+>
+  <span>Rolled {{ distributionStatsByCombination.numberOfDice }} </span>
+  <span>{{ distributionStatsByCombination.sidesOfDie }}-sided dice </span><br />
+  <span>{{ distributionStatsByCombination.totalRolls }} times in</span><br />
+  <span>{{ distributionStatsByCombination.simulations }} simulations</span
+  ><br />
+  <span
+    >having {{ distributionStatsByCombination.numberOfSumResult }} sum
+    combinations</span
+  ><br />
+  <table class="table table-striped table-dark table-hover table-small">
+    <thead>
+      <tr>
+        <th scope="col">Sum of Dice</th>
+        <th scope="col">Frequency</th>
+        <th scope="col">Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dist of distributionStatsByCombination.distribution">
+        <td>{{ dist.totalOfDiceValues }}</td>
+        <td>{{ dist.frequency }}</td>
+        <td>{{ dist.percentage }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #empty> </ng-template>
