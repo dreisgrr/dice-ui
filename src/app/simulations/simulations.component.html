@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let simulation of diceSimulation; let i = index">
+    <tr *ngFor="let simulation of diceSimulation">
       <th scope="row">
         <a
           [routerLink]="['/simulations', simulation.id]"
@@ -23,14 +23,4 @@
       <td>{{ simulation.numberOfRolls }}</td>
     </tr>
   </tbody>
-
-  <!-- 
-  <ul class="table" *ngFor="let simulation of diceSimulation">
-    <li *ngFor="let dist of simulation.distribution">
-      <span>{{ simulation.id }} - </span>
-      <span>{{ dist.totalOfDiceValues }} - </span>
-      <span>{{ dist.frequency }}</span>
-    </li>
-  </ul>
-  -->
 </table>
