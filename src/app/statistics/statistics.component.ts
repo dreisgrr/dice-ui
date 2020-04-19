@@ -15,12 +15,13 @@ export class StatisticsComponent implements OnInit {
   };
 
   constructor(private diceService: DiceServiceService) {}
-  simulationStatsByCombination: simulationStatsByCombination[] = [];
-  distributionStatsByCombination: distributionStatsByCombination[] = [];
+  simulationStatsByCombination: simulationStatsByCombination;
+  distributionStatsByCombination: distributionStatsByCombination;
 
   ngOnInit() {}
 
   getSimulationStatsByCombination(): void {
+    this.reset();
     this.diceService.getSimulationStatsByCombination(this.model).subscribe(
       (res) => {
         this.simulationStatsByCombination = res;
@@ -32,6 +33,7 @@ export class StatisticsComponent implements OnInit {
   }
 
   getCombinedDistributionStatsByCombination(): void {
+    this.reset();
     this.diceService
       .getCombinedDistributionStatsByCombination(this.model)
       .subscribe(
@@ -42,6 +44,10 @@ export class StatisticsComponent implements OnInit {
           console.log(err.error.message);
         }
       );
+  }
+  reset(): void {
+    this.simulationStatsByCombination = null;
+    this.distributionStatsByCombination = null;
   }
 }
 export interface diceConfiguration {

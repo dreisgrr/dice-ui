@@ -41,8 +41,8 @@ export class DiceServiceService {
 
   getSimulationStatsByCombination(
     diceConfiguration: diceConfiguration
-  ): Observable<simulationStatsByCombination[]> {
-    return this.http.post<simulationStatsByCombination[]>(
+  ): Observable<simulationStatsByCombination> {
+    return this.http.post<simulationStatsByCombination>(
       this.GET_STATISTICS_TOTAL_URL,
       diceConfiguration
     );
@@ -50,8 +50,8 @@ export class DiceServiceService {
 
   getCombinedDistributionStatsByCombination(
     diceConfiguration: diceConfiguration
-  ): Observable<distributionStatsByCombination[]> {
-    return this.http.post<distributionStatsByCombination[]>(
+  ): Observable<distributionStatsByCombination> {
+    return this.http.post<distributionStatsByCombination>(
       this.GET_STATISTICS_DISTRIBUTION_URL,
       diceConfiguration
     );

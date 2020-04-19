@@ -1,5 +1,8 @@
 export interface distributionStatsByCombination {
-  totalOfDiceValues: number;
-  frequency: number;
-  percentage: string;
+  sidesOfDie: number;
+  numberOfDice: number;
+  simulations: number;
+  totalRolls: number;
+  numberOfSumResult: number;
+  distribution: string;
 }
