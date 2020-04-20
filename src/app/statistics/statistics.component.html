@@ -89,7 +89,6 @@
   *ngIf="distributionStatsByCombination != null; else empty"
 >
   <span class="diceBot">DiceBot: </span> {{ model.numberOfDice }}
-  <span>Rolled {{ distributionStatsByCombination.numberOfDice }} </span>
   {{ model.sidesOfDie }}-sided dice has been rolled a total of
   <span>{{ distributionStatsByCombination.totalRolls }} times in</span><br />
   <span>{{ distributionStatsByCombination.simulations }} simulations</span
