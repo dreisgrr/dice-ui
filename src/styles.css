@@ -12,3 +12,6 @@
 .table-small {
   margin-top: 1em;
 }
+.invalid-input {
+  color: red;
+}

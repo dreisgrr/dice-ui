@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DiceServiceService } from '../shared/dice-service.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -7,18 +8,41 @@ import { DiceServiceService } from '../shared/dice-service.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  simulationDistribution: simulationDistribution[] = [];
+  diceForm: FormGroup;
+  submitted = false;
+
   model: diceSimulationInput = {
-    numberOfDice: 0,
-    sidesOfDie: 0,
-    numberOfRolls: 0,
+    numberOfDice: null,
+    sidesOfDie: null,
+    numberOfRolls: null,
   };
 
-  constructor(private diceService: DiceServiceService) {}
-  simulationDistribution: simulationDistribution[] = [];
+  constructor(
+    private diceService: DiceServiceService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.diceForm = this.formBuilder.group({
+      sides: ['', [Validators.required, Validators.min(4)]],
+      quantity: [
+        '',
+        [Validators.required, Validators.min(1), Validators.max(100)],
+      ],
+      rollCount: ['', [Validators.required, Validators.min(1)]],
+    });
+  }
+
+  get f() {
+    return this.diceForm.controls;
+  }
 
   runSimulation(): void {
+    this.submitted = true;
+    if (this.diceForm.invalid) {
+      return;
+    }
     this.diceService.runSimulation(this.model).subscribe(
       (res) => {
         this.simulationDistribution = res;
@@ -28,12 +52,17 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  onReset() {
+    this.submitted = false;
+    this.diceForm.reset();
+  }
 }
 
 export interface diceSimulationInput {
-  numberOfDice: number;
-  sidesOfDie: number;
-  numberOfRolls: number;
+  numberOfDice: any;
+  sidesOfDie: any;
+  numberOfRolls: any;
 }
 
 export interface simulationDistribution {

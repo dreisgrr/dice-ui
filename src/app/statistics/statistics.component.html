@@ -2,18 +2,35 @@
   <div class="row">
     <div class="offset-3"></div>
     <div class="col-md-6">
-      <form name="diceConfigForm" #f="ngForm" novalidate class="feedback-form">
+      <form [formGroup]="diceForm" #form="ngForm" class="feedback-form">
         <!-- Sides of die -->
         <div class="form-group">
           <label for="sides">Sides of die</label>
-          <input
+          <select
+            formControlName="sides"
             type="text"
-            id="sides"
             class="form-control"
-            name="sides"
-            placeholder="6"
             [(ngModel)]="model.sidesOfDie"
-          />
+            [ngClass]="{ 'is-invalid': submitted && f.sides.errors }"
+          >
+            <option value=""></option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="20">20</option>
+            <option value="100">100</option>
+          </select>
+          <!-- Input Validation group -->
+          <div *ngIf="submitted && f.sides.errors" class="invalid-input">
+            <div *ngIf="f.sides.errors.required">
+              Sides of dice is required
+            </div>
+            <div *ngIf="f.sides.errors.min">
+              Minimum value is 4
+            </div>
+          </div>
         </div>
 
         <!-- Number of dice -->
@@ -21,12 +38,21 @@
           <label for="quantity">Number of dice</label>
           <input
             type="text"
-            id="quantity"
+            formControlName="quantity"
             class="form-control"
-            name="quantity"
-            placeholder="3"
             [(ngModel)]="model.numberOfDice"
+            [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"
           />
+          <!-- Input Validation group -->
+          <div *ngIf="submitted && f.quantity.errors" class="invalid-input">
+            <div *ngIf="f.quantity.errors.required">
+              Number of dice is required
+            </div>
+            <div *ngIf="f.quantity.errors.min">
+              Minimum value is 1
+            </div>
+            <div *ngIf="f.quantity.errors.max">Maximum value is 100</div>
+          </div>
         </div>
 
         <!-- Button Get Total Rolls-->
@@ -62,8 +88,9 @@
   class="container"
   *ngIf="distributionStatsByCombination != null; else empty"
 >
+  <span class="diceBot">DiceBot: </span> {{ model.numberOfDice }}
   <span>Rolled {{ distributionStatsByCombination.numberOfDice }} </span>
-  <span>{{ distributionStatsByCombination.sidesOfDie }}-sided dice </span><br />
+  {{ model.sidesOfDie }}-sided dice has been rolled a total of
   <span>{{ distributionStatsByCombination.totalRolls }} times in</span><br />
   <span>{{ distributionStatsByCombination.simulations }} simulations</span
   ><br />
