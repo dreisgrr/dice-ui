@@ -26,6 +26,8 @@ Simulations Component
 Simulation-detail Component
 
 - Displays the information for a specific simulation
+- Shows a table for the frequency of the sum of dice
+- Shows a table for each roll details of the simulation
 
 Statistics Component
 
