@@ -16,3 +16,19 @@
     </tr>
   </tbody>
 </table>
+<table class="table table-striped table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Roll Number</th>
+      <th scope="col">Dice Number</th>
+      <th scope="col">Dice Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let details of diceSimulation.details">
+      <td>{{ details.rollNumber }}</td>
+      <td>{{ details.diceNumber }}</td>
+      <td>{{ details.diceValue }}</td>
+    </tr>
+  </tbody>
+</table>

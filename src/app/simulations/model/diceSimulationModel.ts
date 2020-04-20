@@ -4,4 +4,5 @@ export interface diceSimulationModel {
   numberOfDice: number;
   numberOfRolls: number;
   distribution: string;
+  details: string;
 }
