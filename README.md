@@ -6,22 +6,30 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Application information
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The app contains the following components and their description:
+Navigation Component
 
-## Build
+- Holds navigation bar for the application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Home Component
 
-## Running unit tests
+- Holds the dice configuration form for running a simulation
+- Displays the simulation result
+- Validates the form input
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Simulations Component
 
-## Running end-to-end tests
+- Displays all the simulations made in a table sorted by the most recent
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Simulation-detail Component
 
-## Further help
+- Displays the information for a specific simulation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Statistics Component
+
+- Holds the dice combination form used for getting total rolls and distribution information
+- Displays the simulation information for a requested dice combination
+- Displays the distribution information for a requested dice combination
+- Validates the form input
